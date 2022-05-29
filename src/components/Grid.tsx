@@ -2,9 +2,10 @@ import React from "react";
 
 type GridProps = {
   grid: number[][];
+  updateGrid: (i: number, j: number) => void;
 };
 
-const Grid: React.FC<GridProps> = ({ grid }) => {
+const Grid: React.FC<GridProps> = ({ grid, updateGrid }) => {
   return (
     <div>
       {grid.map((row, i: number) => (
@@ -18,6 +19,7 @@ const Grid: React.FC<GridProps> = ({ grid }) => {
                   backgroundColor: backgroundColor,
                 }}
                 key={j}
+                onClick={() => updateGrid(i, j)}
               ></div>
             );
           })}

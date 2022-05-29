@@ -16,6 +16,13 @@ const App: React.FC = () => {
   const [gridFull, setGridFull] = useState(grid);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const updateGrid = (i: number, j: number) => {
+    const gridClone = JSON.parse(JSON.stringify(gridFull));
+    gridClone[i][j] = gridClone[i][j] === 0 ? 1 : 0;
+
+    setGridFull(gridClone);
+  };
+
   const makeGliders = (
     gridClone: number[][],
     intialValue: number = startValue
@@ -159,7 +166,7 @@ const App: React.FC = () => {
           </button>
         </div>
       </div>
-      <Grid grid={gridFull} />
+      <Grid grid={gridFull} updateGrid={updateGrid} />
       <div className='text-center mt-4 mb-16'>
         <h1 className='text-xl'>
           Generation <span className='text-2xl bold italic'>{generation}</span>
